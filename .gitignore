@@ -1,0 +1,6 @@
+.ipynb_checkpoints
+data/*
+model.png
+*.zip
+checkpoints/*
+__pycache__/*
