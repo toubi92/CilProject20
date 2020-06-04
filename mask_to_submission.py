@@ -18,7 +18,8 @@ def patch_to_label(patch):
 
 def mask_to_submission_strings(image_filename):
     """Reads a single image and outputs the strings that should go into the submission file"""
-    img_number = int(re.search(r"\d+", image_filename).group(0))
+    img_number = int(re.search(r"test_\d+", image_filename).group(0).replace("test_", ""))
+    #print('{} - {}'.format(image_filename, img_number))
     im = mpimg.imread(image_filename)
     patch_size = 16
     for j in range(0, im.shape[1], patch_size):
@@ -33,6 +34,7 @@ def masks_to_submission(submission_filename, *image_filenames):
     with open(submission_filename, 'w') as f:
         f.write('id,prediction\n')
         for fn in image_filenames[0:]:
+            #print(fn)
             f.writelines('{}\n'.format(s) for s in mask_to_submission_strings(fn))
 
 
